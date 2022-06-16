@@ -110,6 +110,7 @@ run_button = tk.Button(
 def select_files():
     filetypes = (
         ('video files', '*.mp4'),
+        ('image files', '*.jpg'),
         ('All files', '*.*')
     )
 
