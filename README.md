@@ -1,2 +1,6 @@
-# mp4--txt
-A simple program that takes an mp4 file and outputs it contents as ascii art
+# VASCII
+A simple desktop application that visualize *.mp4 or *.jpg files into ASCII art
+
+## Description
+VASCII is a simple desktop application writen in python. It allows you to visualize *.mp4 or *.jpg files as ASCII art in the command prompt
+
