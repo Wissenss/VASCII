@@ -1,5 +1,3 @@
-from ssl import Options
-from turtle import bgcolor
 import cv2
 from PIL import Image, ImageOps
 import os
@@ -32,11 +30,8 @@ class Txt_file():
                 else:
                     frame += self.CHARS[len(self.CHARS)-(pixels[width*i + j]//20)-1]
             frame += "\n"
-        frame += "\n\n"
+        frame += "\n"
         sys.stdout.write(frame)
-
-        #frame = "\n".join([line for line in ])
-        return image
 
     def execute_txt(self, filename):
         name, extention = os.path.splitext(str(filename))
@@ -68,7 +63,7 @@ root = tk.Tk()
 class App(Txt_file):
     def __init__(self):
         super().__init__()
-        root.title("txt converter") #define title
+        root.title("VASCII") #define title
 
         #CENTER APP SCREEN
         #get screen dimentions
@@ -91,7 +86,7 @@ class App(Txt_file):
         root.resizable(True, True)
 
         #set limits
-        root.minsize(app_width//2, app_height//2)
+        root.minsize(350, 230)
 
         #set window background color
         root.configure(bg='black')
@@ -102,8 +97,6 @@ class App(Txt_file):
         #Main storage
         self.current_file = ""
         self.text = StringVar()
-        self.bgColor = StringVar()
-
         self.text.set("Select a File!")
 
         frame = tk.Frame(root, bg='black')
@@ -123,45 +116,36 @@ class App(Txt_file):
             textvariable=self.text
             )
 
-        open_button = tk.Button(
-            options, 
-            text = 'Open a File',
-            bg = 'black',
-            fg = 'white',
-            command=self.select_files,
-            activebackground="gray",
-            padx=5,
-            pady=5,
-            height=5,
-            width=20
+        class RegularButton(tk.Button):
+            def __init__(self, text_, command_ , *args, **kwargs):
+                super().__init__(
+                    options,
+                    text = text_,
+                    bg = 'black',
+                    fg = 'white',
+                    command=command_,
+                    activebackground="gray",
+                    padx=5,
+                    pady=5,
+                    height=5,
+                    width=20,
+                    *args, **kwargs
+                )
+
+        open_button = RegularButton(
+            'Open File',
+            self.select_files
             )
 
-        self.invert_button = tk.Button(
-            options,
-            text = 'Invert',
-            bg='black',
-            fg = 'white',
-            command = self.invert_image,
-            activebackground="gray",
-            padx=5,
-            pady=5,
-            height=5,
-            width=20
+        self.invert_button = RegularButton(
+            'Invert',
+            self.invert_image,
         )
 
-        self.run_button = tk.Button(
-            options, 
-            text = 'Load',
-            bg = 'black',
-            fg = 'white',
-            command=self.run,
-            #activebackground="gray",
-            highlightcolor='blue',
-            padx=5,
-            pady=5,
-            height=5,
-            width=20,
-            state='disabled'
+        self.run_button = RegularButton(
+            'Load',
+            self.run,
+            state = 'disabled'
             )
 
         label.grid(column=0, row=0, columnspan=2)
@@ -205,4 +189,5 @@ class App(Txt_file):
         self.execute_txt(self.current_file)
 
 App()
+
 root.mainloop()
