@@ -51,8 +51,9 @@ class Txt_file():
                     break
                 cv2.waitKey(10)
                 cv2.imshow('video', frame)
-        elif extention == ".jpg":
-            source = Image.open(r"files/example_1.jpg")
+        elif extention == ".jpg" or extention == ".jpeg":
+            file_path = f"{name}{extention}"
+            source = Image.open(file_path, "r")
             
             self.asciiImage(self.resizeGrayImage(source))
         else:
@@ -166,6 +167,7 @@ class App(Txt_file):
         filetypes = (
         ('video files', '*.mp4'),
         ('image files', '*.jpg'),
+        ('image files', '*.jpeg'),
         ('All files', '*.*')
         )
 
