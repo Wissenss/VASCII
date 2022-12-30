@@ -12,3 +12,8 @@ VASCII is a simple desktop application written in python. It allows you to visua
 - [python 3](https://www.python.org/) (latest version recommended)
 - [Pillow](https://pypi.org/project/Pillow/)
 - [opencv](https://pypi.org/project/opencv-python/)
+
+For convinience **requirements.txt** provides a list of all the requirementes, so once python is installed the dependecies can be obtain by running
+```
+pip install -r requirements.txt
+```
