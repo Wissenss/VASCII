@@ -163,7 +163,7 @@ class App(Txt_file):
             self.invert = False
         
 
-    def select_files(self):
+    def select_files(self, defaultPath='files/'):
         filetypes = (
         ('video files', '*.mp4'),
         ('image files', '*.jpg'),
@@ -171,9 +171,12 @@ class App(Txt_file):
         ('All files', '*.*')
         )
 
+        if not(os.path.exists(defaultPath)):
+            os.mkdir(defaultPath)
+
         self.current_file = fd.askopenfilename(
             title = 'Open a file',
-            initialdir = 'files/',
+            initialdir = defaultPath,
             filetypes=filetypes
         )
 
